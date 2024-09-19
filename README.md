@@ -41,5 +41,3 @@ docker-compose -f docker-compose.dev.yml exec next-app npx prisma migrate dev
 # Shell into the database.
 docker compose -f docker-compose.dev.yml exec -it db psql -U admin -d postgres
 ```
-
-

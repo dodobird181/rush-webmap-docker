@@ -7,10 +7,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model FeatureCollection {
-  id        Int       @id @default(autoincrement())
-  name      String    @db.VarChar(255) //The name of the Feature Collection.
-  crs       Json?
-  features  Json
-  createdAt DateTime  @default(now())
+model Question {
+  id                    Int       @id @default(autoincrement())
+  title                 String    @db.VarChar(255)
+  subtitle              String    @db.Text
+  content               String    @db.Text
+  make_your_move        String    @db.Text
+  down_the_rabbit_hole  String    @db.Text
+  image                 String    @db.Text
+}
+
+model Initiative {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(255)
+  description String    @db.Text
+  image       String    @db.Text
+  url        String    @db.Text
+}
+
+model QuestionInitiative {
+  question_id     Int
+  initiative_id   Int
+  @@unique([question_id, initiative_id])
 }

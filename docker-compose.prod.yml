@@ -21,6 +21,8 @@ services:
     container_name: postgres
     env_file:
       - .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
     ports:
       - "${DB_PORT}:${DB_PORT}"
     networks:
@@ -31,3 +33,7 @@ services:
 networks:
   rush_network:
     external: true
+
+volumes:
+  db_data:
+    driver: local
