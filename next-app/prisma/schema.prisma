@@ -7,29 +7,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Initiative {
-  id         Int       @id @default(autoincrement())
-  title      String
-  text       String
-  image      Bytes
-  link       String
-  Question   Question? @relation(fields: [questionId], references: [id])
-  questionId Int?
-}
-
 model Question {
-  id          Int          @id @default(autoincrement())
-  title       String
-  question    String
-  image       Bytes
-  text        String
-  initiatives Initiative[]
+  id                    Int       @id @default(autoincrement())
+  title                 String    @db.VarChar(255)
+  subtitle              String    @db.Text
+  content               String    @db.Text
+  make_your_move        String    @db.Text
+  down_the_rabbit_hole  String    @db.Text
+  image                 String    @db.Text
 }
 
-model FeatureCollection {
-  id        Int      @id @default(autoincrement())
-  name      String   @db.VarChar(255)
-  crs       Json?
-  features  Json
-  createdAt DateTime @default(now())
+model Initiative {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(255)
+  description String    @db.Text
+  image       String    @db.Text
+  url        String    @db.Text
+}
+
+model QuestionInitiative {
+  question_id     Int
+  initiative_id   Int
+  @@unique([question_id, initiative_id])
 }
