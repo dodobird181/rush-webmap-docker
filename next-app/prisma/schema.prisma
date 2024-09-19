@@ -28,7 +28,7 @@ model Question {
 
 model FeatureCollection {
   id        Int      @id @default(autoincrement())
-  name      String   @db.VarChar(255) //The name of the Feature Collection.
+  name      String   @db.VarChar(255)
   crs       Json?
   features  Json
   createdAt DateTime @default(now())
